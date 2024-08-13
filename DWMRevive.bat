@@ -2,8 +2,7 @@
 title DWM Revive¸
 tasklist /FI "IMAGENAME eq dwm.exe" 2>NUL | find /I /N "dwm.exe">NUL
 if "%ERRORLEVEL%"=="0" (
-    echo It's running.
-    Press any key to ignore echo and execute the DWM shutdown procedure.
+    echo It's running. Press any key to ignore echo and execute the DWM shutdown procedure.
     pause>nul
     echo.
 )
@@ -19,10 +18,6 @@ REM  --> Check for permissions
 
 REM --> If error flag set, we do not have admin.
 if '%errorlevel%' NEQ '0' (
-    pause
-    echo ATTENTION! if you run this script UAC will be "broken". To accept UAC requests from now on, you need to press 2x tab and than enter.
-    echo If 2x Tab + Enter UAC accept is not working, try 3x Tab and Enter
-    echo Be sure to read and understand readme.txt BEFORE executing DWM-Killer for the first time.
     echo Requesting administrator privileges...
     goto UACPrompt
 ) else ( goto gotAdmin )
