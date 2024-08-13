@@ -1,5 +1,5 @@
 # DWM-Killer
-DWM-Killer is without suspicious executables and has a better readme in English.
+DWM-Killer for Windows 11 without suspicious executables and a much better readme in English.
 
 Credits: https://github.com/Ingan121/DWMKiller
 
@@ -226,3 +226,5 @@ Displays a completion message and prompts the user to sign out. If the user choo
 ## Be sure there is no hidden additional lines.
 ## Check the source of the script.
 ## Peace!
+
+Additional materials: Disabling DWM on Windows 11 https://www.youtube.com/watch?v=FV_xL99uw78
