@@ -13,8 +13,8 @@ REM  --> Check for permissions
 
 REM --> If error flag set, we do not have admin.
 if '%errorlevel%' NEQ '0' (
-    echo ATTENTION! if you run this script UAC will be "broken". To accept UAC requests from now on, you need to press 2x tab and than enter.
-    echo If 2x Tab + Enter UAC accept is not working, try 3x Tab and Enter
+    echo ATTENTION! if you run this script UAC will be "broken".
+    echo To accept UAC requests from now on, you need to press 2x tab and than enter.
     echo Be sure to read and understand readme.txt BEFORE executing DWM-Killer for the first time.
     pause
     echo.
