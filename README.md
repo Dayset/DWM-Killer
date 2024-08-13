@@ -99,4 +99,124 @@ Stores all passed parameters in the params variable.
 Changes the current directory to the directory where the script is located.
 Checks if the script has admin rights by querying the system drive. If not, it creates a temporary VBScript to request admin rights and re-runs the batch script with elevated privileges.
 Sets the __COMPAT_LAYER environment variable with multiple compatibility flags to disable fullscreen optimization and other visual effects globally.
-Exiting the script
+Closing the script
+
+```
+echo.
+echo UWP/Immersive Terminating process...
+taskkill -im ApplicationFrameHost.exe -f>nul 2>nul
+if not errorlevel 1 (echo   ApplicationFrameHost.exe: Terminated) else echo   ApplicationFrameHost.exe: Not running
+
+taskkill -im TextInputHost.exe -f>nul 2>nul
+if not errorlevel 1 (echo   TextInputHost.exe: Terminated) else echo   TextInputHost.exe: Not running
+
+taskkill -im SystemSettings.exe -f>nul 2>nul
+if not errorlevel 1 (echo   SystemSettings.exe: Terminated) else echo   SystemSettings.exe: Not running
+
+taskkill -im ShellExperienceHost.exe -f>nul 2>nul
+if not errorlevel 1 (echo   ShellExperienceHost.exe: Terminated) else echo   ShellExperienceHost.exe: Not running
+
+taskkill -im Winstore.App.exe -f>nul 2>nul
+if not errorlevel 1 (echo   Winstore.App.exe: Terminated) else echo   Winstore.App.exe: Not running
+
+taskkill -im StartMenuExperienceHost.exe -f>nul 2>nul
+if not errorlevel 1 (echo   StartMenuExperienceHost.exe: Terminated) else echo   StartMenuExperienceHost.exe: Not running
+
+taskkill -im SearchHost.exe -f>nul 2>nul
+if not errorlevel 1 (echo   SearchHost.exe: Terminated) else echo   SearchHost.exe: Not running
+
+taskkill -im GameBar.exe -f>nul 2>nul
+if not errorlevel 1 (echo   GameBar.exe: Terminated) else echo   GameBar.exe: Not running
+
+echo.
+echo UWP/Immersive Working to prevent component relaunch...
+```
+Kills various processes related to UWP/Immersive applications and checks if the process was successfully terminated.
+
+```
+takeown /a /f C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\SearchHost.exe>nul
+icacls C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\SearchHost.exe /grant Administrators:F>nul
+move C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\SearchHost.exe C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\SearchHost.exe.bak>nul
+if not errorlevel 1 (echo   SearchHost.exe: success) else echo   SearchHost.exe: fail
+
+takeown /a /f C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\TextInputHost.exe>nul
+icacls C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\TextInputHost.exe /grant Administrators:F>nul
+move C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\TextInputHost.exe C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\TextInputHost.exe.bak>nul
+if not errorlevel 1 (echo   TextInputHost.exe: success) else echo   TextInputHost.exe: fail
+
+takeown /a /f C:\Windows\SystemApps\ShellExperienceHost_cw5n1h2txyewy\ShellExperienceHost.exe>nul
+icacls C:\Windows\SystemApps\ShellExperienceHost_cw5n1h2txyewy\ShellExperienceHost.exe /grant Administrators:F>nul
+move C:\Windows\SystemApps\ShellExperienceHost_cw5n1h2txyewy\ShellExperienceHost.exe C:\Windows\SystemApps\ShellExperienceHost_cw5n1h2txyewy\ShellExperienceHost.exe.bak>nul
+if not errorlevel 1 (echo   ShellExperienceHost.exe: success) else echo   ShellExperienceHost.exe: fail
+
+takeown /a /f C:\Windows\System32\ApplicationFrameHost.exe>nul
+icacls C:\Windows\System32\ApplicationFrameHost.exe /grant Administrators:F>nul
+move C:\Windows\System32\ApplicationFrameHost.exe C:\Windows\System32\ApplicationFrameHost.exe.bak>nul
+if not errorlevel 1 (echo   ApplicationFrameHost.exe: success) else echo   ApplicationFrameHost.exe: fail
+
+takeown /a /f C:\Windows\ImmersiveControlPanel\SystemSettings.exe>nul
+icacls C:\Windows\ImmersiveControlPanel\SystemSettings.exe /grant Administrators:F>nul
+move C:\Windows\ImmersiveControlPanel\SystemSettings.exe C:\Windows\ImmersiveControlPanel\SystemSettings.exe.bak>nul
+if not errorlevel 1 (echo   SystemSettings.exe: success) else echo   SystemSettings.exe: fail
+```
+Takes ownership of specific system files, grants admin permissions, and renames them by adding a .bak extension.
+
+```
+echo.
+echo Enabling classic UI elements...
+:reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\MTCUVC" /v EnableMtcUvc /t REG_DWORD /d 0 /f>nul
+:if not errorlevel 1 (echo   Volume control window: Success) else echo   Volume control window: Fail
+
+:reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v UseWin32BatteryFlyout /t REG_DWORD /d 1 /f>nul
+:if not errorlevel 1 (echo   Battery information window: Success) else echo   Battery information window: Fail
+
+:reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell" /v UseWin32TrayClockExperience /t REG_DWORD /d 1 /f>nul
+:if not errorlevel 1 (echo   Date and Time Window (requires StartIsBack++ 2.9 or higher^): Success) else echo   Date and Time Window (requires StartIsBack++ 2.9 or higher^): Fail
+
+reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v EnableLegacyBalloonNotifications /t REG_DWORD /d 1 /f>nul
+if not errorlevel 1 (echo   Balloon notification window: Success) else echo   Balloon notification window: Fail
+
+:reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer" /v AltTabSettings /t REG_DWORD /d 1 /f>nul
+:if not errorlevel 1 (echo   Alt+Tab: Success) else echo   Alt+Tab: Fail
+
+takeown /a /f C:\Windows\System32\Windows.UI.Logon.dll>nul
+icacls C:\Windows\System32\Windows.UI.Logon.dll /grant Administrators:F>nul
+move C:\Windows\System32\Windows.UI.Logon.dll C:\Windows\System32\Windows.UI.Logon.dll.bak>nul
+if not errorlevel 1 (echo   Console Login: Success) else echo   Console Login: Fail
+
+echo.
+<nul set /p =dwminit.dll Disabling... 
+takeown /a /f C:\Windows\System32\dwminit.dll>nul
+icacls C:\Windows\System32\dwminit.dll /grant Administrators:F>nul
+move C:\Windows\System32\dwminit.dll C:\Windows\System32\dwminit.dll.bak>nul
+if not errorlevel 1 (echo success) else echo fail
+
+:<nul set /p =Disabling visual themes... 
+:takeown /a /f C:\Windows\Resources\Themes\aero\aero.msstyles>nul
+:icacls C:\Windows\Resources\Themes\aero\aero.msstyles /grant Administrators:F>nul
+:move C:\Windows\Resources\Themes\aero\aero.msstyles C:\Windows\Resources\Themes\aero\aero.msstyles.bak>nul
+:if not errorlevel 1 (echo success) else echo fail
+```
+Modifies registry settings to disable background access applications.
+Takes ownership of specific system files, grants admin permissions, and renames them by adding a .bak extension.
+Activates windows elements to maintain system stability
+
+```
+echo.
+echo complete!
+
+echo.
+choice /m "Sign out now?"
+if %errorlevel% == 1 (
+    logoff
+    exit
+) else (
+    echo Press any key to close this window.
+    timeout 20 >nul
+)
+```
+Displays a completion message and prompts the user to sign out. If the user chooses to sign out, the script logs off the user; otherwise, it waits for 20 seconds before closing the window.
+
+
+# DWMRevive does basically the same but ib reverse order. Same style description would be overkill.
+# If you don't understang what is going on here, just don't execute the script. Peace!
