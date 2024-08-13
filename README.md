@@ -1,5 +1,6 @@
 # DWM-Killer
 DWM-Killer is without suspicious executables and has a better readme in English.
+
 Credits: https://github.com/Ingan121/DWMKiller
 
 
@@ -9,7 +10,8 @@ Additionally, but not necessary: TEST DWMKiller and DWMRevive scripts on a Virtu
 
 ## !Important!
 
-⚠️ Critical Information: Disabling DWM will cause the UAC interface to become non-functional (“soft brick”). The UAC prompt will appear blank, but you can still interact with it by pressing the “Tab” key twice (sometimes it's thrice) followed by the “Enter” key to accept the UAC request. Blank CMD window potentialy can wait for "Any key.." like "Y" for example.
+##⚠️ Critical Information: Disabling DWM will cause the UAC interface to become non-functional (“soft brick”).
+##⚠️ The UAC prompt will appear blank, but you can still interact with it by pressing the “Tab” key twice followed by the “Enter” key to accept the UAC request.
 
 
 ## Potential Impact of Disabling DWM: Disabling the Desktop Window Manager (DWM) using this script can significantly affect various system functionalities, including but not limited to:
@@ -218,5 +220,5 @@ if %errorlevel% == 1 (
 Displays a completion message and prompts the user to sign out. If the user chooses to sign out, the script logs off the user; otherwise, it waits for 20 seconds before closing the window.
 
 
-# DWMRevive does basically the same but ib reverse order. Same style description would be overkill.
+# DWMRevive does basically the same but in reverse order. Same style description would be overkill.
 # If you don't understang what is going on here, just don't execute the script. Peace!
