@@ -105,7 +105,7 @@ if not errorlevel 1 (echo   SystemSettings.exe: success) else echo   SystemSetti
 echo.
 <nul set /p Disabling app background execution... 
 reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications /v GlobalUserDisabled /t REG_DWORD /d 1 /f>nul && reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications /v Migrated /t REG_DWORD /d 4 /f>nul
-if not errorlevel 1 (echo success) else echo ½ÇÆÐ
+if not errorlevel 1 (echo success) else echo Fail
 
 echo.
 echo Enabling classic UI elements...
