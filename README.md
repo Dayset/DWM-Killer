@@ -8,7 +8,7 @@ Credits: https://github.com/Ingan121/DWMKiller
 Additionally, but not necessary: TEST DWMKiller and DWMRevive scripts on a Virtual Machine matching your system 1 to 1 to be sure that it is safe to use.
 
 
-## !Important!
+# !Important!
 
 ## ⚠️ Critical Information: Disabling DWM will cause the UAC interface to become non-functional (“soft brick”).
 ## ⚠️ The UAC prompt will appear blank, but you can still interact with it by pressing the “Tab” key twice followed by the “Enter” key to accept the UAC request.
