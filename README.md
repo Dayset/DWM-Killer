@@ -5,6 +5,7 @@ Credits: https://github.com/Ingan121/DWMKiller
 
 
 ⚠️ Before executing this script, it is highly recommended to create a backup or restore point of your system.
+
 Additionally, but not necessary: TEST DWMKiller and DWMRevive scripts on a Virtual Machine matching your system 1 to 1 to be sure that it is safe to use.
 
 
