@@ -221,5 +221,8 @@ if %errorlevel% == 1 (
 Displays a completion message and prompts the user to sign out. If the user chooses to sign out, the script logs off the user; otherwise, it waits for 20 seconds before closing the window.
 
 
-# DWMRevive does basically the same but in reverse order. Same style description would be overkill.
-# If you don't understang what is going on here, just don't execute the script. Peace!
+## DWMRevive does basically the same but in reverse order. Same style description would be overkill.
+## If you don't understang what is going on here, just don't execute the script.
+## Be sure there is no hidden additional lines.
+## Check the source of the script.
+## Peace!
